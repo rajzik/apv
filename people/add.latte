@@ -1,0 +1,40 @@
+{extends '../layout.latte'}
+
+{block obsah}
+{if isset($message)}
+
+    <h2>{$message}</h2>
+   
+{/if}
+  
+
+
+
+<div class="mdl-card normal-margin">
+    <form action="./add" method="post">
+        <div class="form-group">
+            <label for="name">First name</label>
+            <input class="form-control" type="text" id="name" placeholder="First name" name="first_name" value="{$form['first_name']}" required>
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last name</label>
+            <input class="form-control" type="text" id="lastname" name="last_name"  placeholder="Last name" value="{$form['last_name']}" required>
+        </div>
+        <div class="form-group">
+            <label for="nick">Nick</label>
+            <input class="form-control" type="text" id="nick" name="nick"  placeholder="Nick" value="{$form['nick']}" required>
+        </div>
+        <div class="form-group">
+            <label for="birth_date">Birth date</label>
+            <input class="form-control" type="text"  placeholder="1990-01-02" pattern="[0-9]{l}4{r}-[0-9]{l}2{r}-[0-9]{l}2{r}" value="{$form['birth_date']}" id="birth_date" name="birth_date">
+        </div>
+        <div class="form-group">
+            <label for="height">Height</label>
+            <input class="form-control" type="number" id="height" placeholder="182" value="{$form['height']}" name="height">
+        </div>
+        <button type="submit" name="submit" value="add" class="btn btn-primary"> <i class="material-icons">add</i></button>
+
+    </form>
+
+</div>
+{/block}

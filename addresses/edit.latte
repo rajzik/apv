@@ -1,0 +1,51 @@
+{extends '../layout.latte'}
+
+{block obsah}
+{if isset($message)}
+
+    <h2>{$message}</h2>
+   
+{/if}
+  
+
+    <form action="./edit" method="post">
+        <input type="hidden" name="id_location" value="{$form['id_location']}" />
+        <div class="form-group">
+            <label for="city">City</label>
+            <input class="form-control" type="text" placeholder="My best city" id="city" name="city" value="{$form['city']?$form['city']:''}">
+        </div>
+        <div class="form-group">
+            <label for="street_name">Street name</label>
+            <input class="form-control" type="text" id="street_name" placeholder="My best street" name="street_name" value="{$form['street_name']?$form['street_name']:''}">
+        </div>
+        <div class="form-group">
+            <label for="street_number">Street number</label>
+            <input class="form-control" type="number" id="street_number" placeholder="22" name="street_number" value="{$form['street_number']?$form['street_number']:''}">
+        </div>
+        <div class="form-group">
+            <label for="zip">Zip</label>
+            <input class="form-control" type="text" id="zip" name="zip" placeholder="22222" value="{$form['zip']?$form['zip']:''}">
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <input class="form-control" type="text" id="country" placeholder="My best country" name="country" value="{$form['country']?$form['country']:''}">
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" id="name" placeholder="My best place" name="name" value="{$form['name']?$form['name']:''}">
+        </div>
+        <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input class="form-control" type="text" id="latitude" placeholder="22.123" name="latitude" value="{$form['latitude']?$form['latitude']:''}" >
+        </div>
+        <div class="form-group">
+            <label for="longitude">Longitude</label>
+            <input class="form-control" type="text" id="longitude" placeholder="22.123" name="longitude" value="{$form['longitude']?$form['longitude']:''}" >
+        </div>
+        
+        
+        <button type="submit" name="submit" value="add" class="btn btn-primary"><i class="material-icons">add</i></button>
+
+    </form>
+
+{/block}

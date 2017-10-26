@@ -1,0 +1,36 @@
+RewriteEngine On
+
+RewriteRule ^$                                          /~xsilhan2/people [L]
+RewriteRule ^person/add$                                /~xsilhan2/people/add.php [L]
+RewriteRule ^person/([^/]*)/edit$                       /~xsilhan2/people/edit.php?id=$1 [L]
+RewriteRule ^person/([^/]*)/remove$                     /~xsilhan2/people/remove.php?id=$1 [L]
+
+RewriteRule ^person/([^/]*)/update$                     /~xsilhan2/people/update.php?id=$1 [L]
+
+RewriteRule ^person/([^/]*)/contact$                    /~xsilhan2/contact/index.php?id=$1 [QSA,L]
+RewriteRule ^person/([^/]*)/contact/([^/]*)/edit$       /~xsilhan2/contact/edit.php?person_id=$1&id=$2 [L]
+RewriteRule ^person/([^/]*)/contact/([^/]*)/remove$     /~xsilhan2/contact/remove.php?id=$2&person_id=$1 [L]
+RewriteRule ^person/([^/]*)/contact/add$                /~xsilhan2/contact/add.php?id=$1 [L]
+
+RewriteRule ^person/([^/]*)/relations$                  /~xsilhan2/relations/index.php?id=$1 [QSA,L]
+RewriteRule ^person/([^/]*)/relation/([^/]*)/remove$    /~xsilhan2/relations/remove.php?person_id=$1&id=$2 [L]
+RewriteRule ^person/([^/]*)/relation/([^/]*)/edit$      /~xsilhan2/relations/edit.php?person_id=$1&id=$2 [L]
+RewriteRule ^person/([^/]*)/relations/add1$             /~xsilhan2/relations/add1.php?person_id=$1 [L]
+RewriteRule ^person/([^/]*)/relations/add2/([^/]*)/$    /~xsilhan2/relations/add2.php?person_id=$1&person_id2=$2 [L]
+
+RewriteRule ^person/([^/]*)/meetings$                                                   /~xsilhan2/meetings/index.php?person_id=$1 [QSA,L]
+RewriteRule ^person/([^/]*)/meeting/create$                                             /~xsilhan2/meetings/create.php?person_id=$1 [L]
+RewriteRule ^person/([^/]*)/meeting/([^/]*)/edit$                                       /~xsilhan2/meetings/edit.php?person_id=$1&meeting_id=$2 [L]
+RewriteRule ^person/([^/]*)/meeting/([^/]*)/participants/add$                           /~xsilhan2/meetings/add.php?person_id=$1&meeting_id=$2 [L]
+RewriteRule ^person/([^/]*)/meeting/([^/]*)/participants/add/([^/]*)$                   /~xsilhan2/meetings/add.php?person_id=$1&meeting_id=$2&to_add=$3 [L]
+RewriteRule ^person/([^/]*)/meeting/([^/]*)/participant/([^/]*)/remove$                 /~xsilhan2/meetings/remove.php?person_id=$1&meeting_id=$2&participant=$3 [L]
+RewriteRule ^person/([^/]*)/meeting/([^/]*)/remove$                                     /~xsilhan2/meetings/removeMeeting.php?person_id=$1&meeting_id=$2 [L]
+RewriteRule ^person/([^/]*)/meeting/create/location$                                    /~xsilhan2/meetings/changeLocation.php?type=create&person_id=$1 [QSA,L]
+RewriteRule ^person/([^/]*)/meeting/([^/]*)/location$                                   /~xsilhan2/meetings/changeLocation.php?person_id=$1&meeting_id=$2&type=modify [QSA,L]
+
+
+
+RewriteRule ^addresses/([^/]*)/edit$                                                    /~xsilhan2/addresses/edit.php?id=$1 [L]
+RewriteRule ^addresses/([^/]*)/remove$                                                  /~xsilhan2/addresses/remove.php?id=$1 [L]
+
+RewriteRule ^login/$                                                    /~xsilhan2/login/login.php [L]

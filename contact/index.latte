@@ -1,0 +1,56 @@
+{extends '../layout.latte'}
+
+{block obsah}
+    {if isset($message)}
+        <h2>{$message}</h2>
+    {/if}
+  
+    <form method="post" action="/~xsilhan2/person/{$person_id}/contact/add">
+        <table class="table table-striped">
+            <thead>
+                <th>Contact type</th>
+                <th>Contact</th>
+                <th>Actions</th>
+                <th></th>
+            </thead>
+            <tbody>
+            {foreach $contacts as $contact}  
+                <tr >
+                    <td>{$contact["name"]}</td>
+                    <td>{$contact["contact"]}</td>
+                    <td>
+                        <a href="contact/{$contact['id_contact']}/edit" class="btn btn-primary" >Edit</a>
+                    </td>
+                    <td>
+                        <a href="contact/{$contact['id_contact']}/remove" class="btn btn-danger">Remove</a>
+                    </td>
+                </tr>
+            {/foreach}      
+                <tr>
+                    <td>
+                        <select class="form-control" name="type" required>
+                            {if !empty($typos)} 
+                                <option disabled>Select contact type</option>
+                            {else} 
+                                <option selected disabled>Select contact type</option>
+                            {/if}
+                            
+                            <option n:foreach="$contact_type as $type" value="{$type['id_contact_type']}" {$type['id_contact_type'] == $typos ? "selected": "" } >
+                                {$type['name']}
+                            </option>
+                           </select>
+                    </td>
+                    <td>
+                            <input type="text" class="form-control" name="value" id="contactVal" placeholder="Contact value" value="{isset($value) ? $value : ''}" placeholder="Contact value" required/>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <button type="submit" name="add-contact" value="add-contact" data-id="{$contact['id_contact']}" class="btn btn-primary">Add</button>
+                    </td>
+                <tr>
+            </tbody>
+        </table>
+    </form>
+
+{/block}

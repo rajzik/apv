@@ -1,0 +1,36 @@
+{extends '../layout.latte'}
+
+
+{block obsah}
+{if isset($message)}
+
+    <h2>{$message}</h2>
+   
+{/if}
+  
+
+
+<form action="edit" method="post">
+    <input type="hidden" name="id" value="{$form['id']}" >
+    <div class="form-group">
+        <label for="name">Select contact type</label>
+        <br>
+        <select class="form-control" id="name" name="type" required>
+            <option disabled>Select contact type</option>
+            <option n:foreach="$contact_type as $type" value="{$type['id_contact_type']}" {$type['id_contact_type'] == $form['id_contact_type'] ? "selected": "" } >
+                {$type['name']}
+            </option>
+        </select>
+    </div>
+     <div class="form-group">
+        <label for="value">Contact value</label>
+        <input class="form-control" type="text" placeholder="Contact value" id="value" name="value" value="{$form['value']}" required>
+    </div>
+        <button type="submit" name="submit" value="change" class="btn btn-primary">
+            Submit
+        </button>
+
+</form>
+
+</div>
+{/block}

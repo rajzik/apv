@@ -1,0 +1,38 @@
+{extends '../layout.latte'}
+
+{block obsah}
+    {if isset($message)}
+        <h2>{$message}</h2>
+    {/if}
+  
+        <table class="table table-striped">
+            <thead>
+                <th>Person name</th>
+                <th>Description</th>
+                <th>Relation type</th>
+                <th>Actions</th>
+                <th></th>
+            </thead>
+            <tbody>
+            {foreach $relations as $relation}  
+                <tr >
+                    <td>{$relation["first_name"] . " " . $relation["last_name"]}</td>
+                    <td>{$relation["description"]}</td>
+                    <td>{$relation["name"]}</td>
+                    <td>
+                        <a href="relation/{$relation['id_relation']}/edit" class="btn btn-primary" >Edit</a>
+                    </td>
+                    <td>
+                        <a href="relation/{$relation['id_relation']}/remove" class="btn btn-danger">Remove</a>
+                    </td>
+                </tr>
+            {/foreach}      
+                <tr>
+                    <td colspan="5">
+                        <a href="relations/add1" class="btn btn-primary">Add</a>
+                    </td>
+                <tr>
+            </tbody>
+        </table>
+
+{/block}

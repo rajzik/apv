@@ -1,0 +1,71 @@
+{extends '../layout.latte'}
+
+{block obsah}
+    {if isset($message)}
+        <h2>{$message}</h2>
+    {/if}
+    <div class="container-fluid">
+        <h3 class="my-3">{$person['first_name']} {$person['last_name']} Meetings</h3>
+        <div class="d-flex flex-wrap">
+            {foreach $meetings as $meeting}
+                <div class="card p-1 m-2">
+                    <div class="card-block">
+                        <h4 class="card-title">{$meeting['description'] ? $meeting['description']: "Name N/A"}</h4>
+                        <p>Date: {$meeting['start']}</p>
+                        {if isset($meeting['duration'])}
+                            <p>Duration: {$meeting['duration']}</p>
+                        {/if}
+                        <h5>Location</h5>
+                        {if isset($meeting['name'])}
+                            <h6>{$meeting['name']}</h6>
+                        {/if}  
+                        <p class="mb-1">   
+                        {if isset($meeting['street_name'])}
+                             {$meeting['street_name']}
+                        {/if}
+                        {if isset($meeting['street_number'])}
+                             {$meeting['street_number']}
+                        {/if}  
+                        </p>
+                        <p class="mb-2">
+                        {if isset($meeting['zip'])}
+                            {$meeting['zip']} 
+                        {/if}                   
+                        {if isset($meeting['city'])}
+                            - {$meeting['city']} 
+                        {/if}
+                        </p>
+                        <h3>Participants</h3>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>First name</th>
+                                    <th>Last name</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {foreach $meeting['participants'] as $participant}
+                                <tr>
+                                    <td>{$participant['first_name']}</td>
+                                    <td>{$participant['last_name']}</td>
+                                    <td>
+                                        <a href="./meeting/{$meeting['id_meeting']}/participant/{$participant['id_person']}/remove" class="btn btn-danger">Remove</a>
+                                    </td>
+                                </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+                        <a href="./meeting/{$meeting['id_meeting']}/edit" class="btn btn-primary">Edit</a>
+                        <a href="./meeting/{$meeting['id_meeting']}/location" class="btn btn-primary">Change location</a> 
+                        <a href="./meeting/{$meeting['id_meeting']}/participants/add" class="btn btn-secondary">Add Participants</a>
+                        <a href="./meeting/{$meeting['id_meeting']}/remove" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            {/foreach}
+        </div>
+        <div class="fluid-container my-5">
+            <a href="./meeting/create" class="btn btn-primary">Create meeting</a> 
+        </div>
+    </div>
+{/block}

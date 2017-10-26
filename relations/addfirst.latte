@@ -1,0 +1,32 @@
+{extends '../layout.latte'}
+
+{block obsah}
+    <h2 class="px-2 my-2">Select person</h2>
+    {if isset($message)}
+        <h2>{$message}</h2>
+    {/if}
+  
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Last name</th>
+            <th>First name</th>
+            <th>Nick</th>
+            <th>Actions</th> 
+        </tr>
+    </thead>
+    <tbody>
+        {foreach $people as $person}  
+            <tr >
+                <td>{$person["last_name"]}</td>
+                <td>{$person["first_name"]}</td>
+                <td>{$person["nickname"]}</td>
+                <td>
+                    <a href="add2/{$person["id_person"]}/" class="btn btn-primary ">Select</a>
+                </td>
+            </tr>
+        {/foreach}      
+    </tbody>
+    </table>
+
+{/block}

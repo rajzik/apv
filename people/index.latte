@@ -1,0 +1,71 @@
+{extends '../layout.latte'}
+
+{block obsah}
+
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Last name</th>
+            <th>First name</th>
+            <th>Nick</th>
+            <th>Address</th>
+            <th>Meetings</th>
+            <th>Relations</th>
+            <th>Contacts</th>
+            <th>Actions</th> 
+            <th></th> 
+        </tr>
+        <tr>
+            <th><input class="form-control" data-action="query" name="last_name" placeholder="Last name" value="{$form['last_name']}" /></th>
+            <th><input class="form-control" data-action="query" name="first_name" placeholder="First name" value="{$form['first_name']}" /></th>
+            <th><input class="form-control" data-action="query" name="nick" placeholder="Nick" value="{$form['nick']}" /></th>
+            <th><input class="form-control" data-action="query" name="city" placeholder="City" value="{$form['city']}" /></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        <tr>
+    </thead>
+    <tbody>
+        {foreach $people as $person}  
+            <tr >
+                <td>{$person["last_name"]}</td>
+                <td>{$person["first_name"]}</td>
+                <td>{$person["nickname"]}</td>
+                <td>
+                    <a href="/~xsilhan2/person/{$person['id_person']}/update" data-toggle="tooltip" data-placement="bottom" title="Click to change address">
+                        {if $person["id_location"]}
+                            {$person["street_name"]} {$person["street_number"]}, {$person["city"]}, {$person["zip"]}
+                        {else}
+                            No adress found.
+                        {/if}
+                    </a>
+                </td>
+                <td>
+                    <a href="/~xsilhan2/person/{$person["id_person"]}/meetings" data-toggle="tooltip" data-placement="bottom" title="manage meetings">
+                    <span class="badge badge-pill badge-info"><i id="relations__{$person["id_person"]}" class="material-icons" >event</i>{$person["meeting_count"] ? $person["meeting_count"] : 0}</span>
+                    </a>
+                </td>
+                <td>
+                    <a href="/~xsilhan2/person/{$person["id_person"]}/relations" data-toggle="tooltip" data-placement="bottom" title="Update relations">
+                    <span class="badge badge-pill badge-danger"><i id="relations__{$person["id_person"]}" class="material-icons" >favorite </i>{$person["relations_count"] ? $person["relations_count"] : 0}</span>
+                        
+                    </a>
+                </td>
+                <td>
+                    <a href="/~xsilhan2/person/{$person["id_person"]}/contact" data-toggle="tooltip" data-placement="bottom" title="Update contacts">
+                        <span class="badge badge-pill badge-info"><i id="person__{$person["id_person"]}" class="material-icons" >perm_contact_calendar</i>{$person["contact_count"] ? $person["contact_count"] : 0}</span>
+                    </a>
+                </td>
+                <td>
+                    <a href="/~xsilhan2/person/{$person['id_person']}/edit" class="btn btn-primary" >Edit</a>
+                </td>
+                <td>
+                    <a href="/~xsilhan2/person/{$person['id_person']}/remove" class="btn btn-danger" >remove</a>
+                </td>
+            </tr>
+        {/foreach}      
+    </tbody>
+    </table>
+{/block}

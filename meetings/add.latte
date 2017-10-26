@@ -1,0 +1,45 @@
+{extends '../layout.latte'}
+
+
+{block obsah}
+{if isset($message)}
+    <h2>{$message}</h2>
+{/if}
+    <form method="post">
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>select</th>
+            <th>Last name</th>
+            <th>First name</th>
+            <th>Nick</th>
+            <th>Address</th>
+            <th>Select</th> 
+        </tr>
+    </thead>
+    <tbody>
+        {foreach $people as $person}  
+            <tr>
+                <td><input class="form-control"  type="checkbox" name="people[]" value="{$person['id_person']}" /></td>
+                <td>{$person["last_name"]}</td>
+                <td>{$person["first_name"]}</td>
+                <td>{$person["nickname"]}</td>
+                <td>
+                {if $person["id_location"]}
+                    {$person["street_name"]} {$person["street_number"]}, {$person["city"]}, {$person["zip"]}
+                {else}
+                    No adress found.
+                {/if}
+                </td>
+                <td>
+                    <a href="./add/{$person['id_person']}" class="btn btn-secondary" >add</a>
+                </td>
+            </tr>
+        {/foreach}      
+    </tbody>
+    </table>
+    <button type="submit" name="submit" class="btn btn-primary" value="multipleAdd">
+        Add all
+    </button>
+    </form>
+{/block}

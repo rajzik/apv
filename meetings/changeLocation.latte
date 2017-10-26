@@ -1,0 +1,50 @@
+
+
+
+{extends '../layout.latte'}
+
+
+{block obsah}
+{if isset($message)}
+    <h2>{$message}</h2>
+{/if}
+  
+<form action="./location" method="post">
+    <input class="form-control" type="hidden" id="description" name="description" value="{$form['description']?$form['description'] : ''}">
+    <input class="form-control" type="hidden" id="start" name="start" value="{$form['start']?$form['start']:''}"
+        <input class="form-control" type="hidden" id="duration" name="duration" value="{$form['duration']?$form['duration']: ''}" 
+            placeholder="HH:MI"
+        >
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Street name</th>
+                <th>Street number</th>
+                <th>Zip</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $locations as $location}
+                <tr>
+                    <td>{$location['name']}</td>
+                    <td>{$location['country']}</td>
+                    <td>{$location['city']}</td>
+                    <td>{$location['street_name']}</td>
+                    <td>{$location['street_number']}</td>
+                    <td>{$location['zip']}</td>
+                    <td>
+                        <button type="submit" class="btn btn-primary" name="id" value="{$location['id_location']}">
+                            select
+                        </button>
+                    </td>
+                </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</form>
+
+{/block}
