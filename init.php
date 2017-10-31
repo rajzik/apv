@@ -4,7 +4,8 @@ require 'latte.php';
 $latte = new Latte\Engine;
 $db;
 try {
-    $db = new PDO('pgsql:host=localhost;dbname=xsilhan2', 'xsilhan2', '$engr%');
+    // substitute your user name and password for your DB
+    $db = new PDO('pgsql:host=localhost;dbname=username', 'username', 'password');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     exit('I cannot connect to database: ' . $e->getMessage());
